@@ -1,2 +1,3 @@
-pyrogram
-tgcrypto
+Pyrogram
+TgCrypto
+Flask
