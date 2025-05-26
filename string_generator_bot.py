@@ -1,11 +1,22 @@
 from pyrogram import Client, filters
 from pyrogram.errors import SessionPasswordNeeded
 import asyncio
+from flask import Flask
+import threading
 
-API_ID = 24369670        # Your API ID
-API_HASH = "1d9a1f3aefe6e65bcfa51a35ba103735"  # Your API Hash
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"  # Your Telegram Bot Token
+API_ID = 24369670        # 你的 API ID
+API_HASH = "1d9a1f3aefe6e65bcfa51a35ba103735"  # 你的 API Hash
+BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"  # 替换为你的 Telegram Bot Token
 
+# 初始化 Flask
+app = Flask(__name__)
+
+# 添加一个简单的健康检查端点
+@app.route("/")
+def home():
+    return "Bot is running!"
+
+# 初始化 Pyrogram 客户端
 bot = Client("bot", bot_token=BOT_TOKEN)
 
 @bot.on_message(filters.command("start"))
@@ -48,4 +59,12 @@ async def generate_string(_, message):
         except Exception as e:
             await message.reply(f"Error: {e}")
 
+# 启动 Flask 的函数
+def run_flask():
+    app.run(host="0.0.0.0", port=8080)
+
+# 在单独线程中运行 Flask
+threading.Thread(target=run_flask, daemon=True).start()
+
+# 启动 Pyrogram 机器人
 bot.run()
