@@ -4,9 +4,9 @@ import asyncio
 from flask import Flask
 import threading
 
-API_ID = 22699755        # 你的 API ID
-API_HASH = "23f3fa8a1b75ab288b08b429a960f847"  # 你的 API Hash
-BOT_TOKEN = "7144294800:AAEu7Gyhmx3lBJJgdrBi8apVd9zfPKQW-Ms"  # 替换为你的 Telegram Bot Token
+API_ID = 2        # 你的 API ID
+API_HASH = "23f3fa8a1b75ab28847"  # 你的 API Hash
+BOT_TOKEN = "71442948fPKQW-Ms"  # 替换为你的 Telegram Bot Token
 
 # 初始化 Flask
 app = Flask(__name__)
